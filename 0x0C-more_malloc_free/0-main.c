@@ -4,67 +4,13 @@
 
 #include <stdlib.h>
 
-
-
-/**
- *
- *  * simple_print_buffer - prints buffer in hexa
- *
- *   * @buffer: the address of memory to print
- *
- *    * @size: the size of the memory to print
- *
- *     *
- *
- *      * Return: Nothing.
- *
- *       */
-
-void simple_print_buffer(char *buffer, unsigned int size)
-
-{
-
-	    unsigned int i;
-
-
-
-	        i = 0;
-
-		    while (i < size)
-
-			        {
-
-					        if (i % 10)
-
-							        {
-
-									            printf(" ");
-
-										            }
-
-						        if (!(i % 10) && i)
-
-								        {
-
-										            printf("\n");
-
-											            }
-
-							        printf("0x%02x", buffer[i]);
-
-								        i++;
-
-									    }
-
-		        printf("\n");
-
-}
+#include <limits.h>
 
 
 
 /**
  *
- *  * main - check the code for ALX School students.
+ *  * main - check the code
  *
  *   *
  *
@@ -76,26 +22,40 @@ int main(void)
 
 {
 
-	    char *buffer;
+	    char *c;
+
+	        int *i;
+
+		    float *f;
+
+		        double *d;
 
 
 
-	        buffer = create_array(98, 'H');
+			    c = malloc_checked(sizeof(char) * 1024);
 
-		    if  (buffer == NULL)
+			        printf("%p\n", (void *)c);
 
-			        {
+				    i = malloc_checked(sizeof(int) * 402);
 
-					        printf("failed to allocate memory\n");
+				        printf("%p\n", (void *)i);
 
-						        return (1);
+					    f = malloc_checked(sizeof(float) * 100000000);
 
-							    }
+					        printf("%p\n", (void *)f);
 
-		        simple_print_buffer(buffer, 98);
+						    d = malloc_checked(INT_MAX);
 
-			    free(buffer);
+						        printf("%p\n", (void *)d);
 
-			        return (0);
+							    free(c);
+
+							        free(i);
+
+								    free(f);
+
+								        free(d);
+
+									    return (0);
 
 }
